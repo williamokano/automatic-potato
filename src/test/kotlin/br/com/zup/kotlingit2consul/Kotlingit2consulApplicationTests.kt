@@ -1,4 +1,4 @@
-package br.com.zup.kotlingit2consul.kotlingit2consul
+package br.com.zup.kotlingit2consul
 
 import org.junit.Test
 import org.junit.runner.RunWith

@@ -1,4 +1,4 @@
-package br.com.zup.kotlingit2consul.kotlingit2consul.config
+package br.com.zup.kotlingit2consul.config
 
 import com.google.common.net.HostAndPort
 import com.orbitz.consul.Consul

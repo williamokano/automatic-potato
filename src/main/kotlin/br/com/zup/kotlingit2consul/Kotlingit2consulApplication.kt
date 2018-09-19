@@ -1,4 +1,4 @@
-package br.com.zup.kotlingit2consul.kotlingit2consul
+package br.com.zup.kotlingit2consul
 
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication

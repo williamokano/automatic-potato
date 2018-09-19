@@ -1,0 +1,24 @@
+{
+  "properties": [
+    {
+      "name": "poll.interval.ms",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "consul.host",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "consul.port",
+      "type": "java.lang.Integer"
+    },
+    {
+      "name": "should.clean.consul.keys",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "name": "consul.prepended.string",
+      "type": "java.lang.String"
+    }
+  ]
+}
