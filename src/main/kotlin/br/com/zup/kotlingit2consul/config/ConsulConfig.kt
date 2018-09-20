@@ -2,8 +2,10 @@ package br.com.zup.kotlingit2consul.config
 
 import br.com.zup.kotlingit2consul.services.ConsulService
 import br.com.zup.kotlingit2consul.services.GitService
+import br.com.zup.kotlingit2consul.services.PropertiesService
 import br.com.zup.kotlingit2consul.services.impl.ConsulServiceImpl
 import br.com.zup.kotlingit2consul.services.impl.GitServiceImpl
+import br.com.zup.kotlingit2consul.services.impl.PropertiesServiceImpl
 import com.google.common.net.HostAndPort
 import com.orbitz.consul.Consul
 import org.springframework.beans.factory.annotation.Value
@@ -31,4 +33,8 @@ class ConsulConfig {
     @Bean
     fun gitService(@Value("\${consul.prepended.string}") prependKey: String): GitService =
         GitServiceImpl(prependKey)
+
+    @Bean
+    fun propertiesService(): PropertiesService =
+        PropertiesServiceImpl()
 }

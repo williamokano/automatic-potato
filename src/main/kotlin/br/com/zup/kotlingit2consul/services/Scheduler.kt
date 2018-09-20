@@ -1,15 +1,16 @@
 package br.com.zup.kotlingit2consul.services
 
+import org.apache.commons.text.StringSubstitutor
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
-import java.util.*
 
 @Component
 class Scheduler(
     private val consulService: ConsulService,
-    private val gitService: GitService
+    private val gitService: GitService,
+    private val propertiesService: PropertiesService
 ) {
     private companion object {
         val LOGGER = LoggerFactory.getLogger(this::class.java)!!
@@ -25,7 +26,8 @@ class Scheduler(
 
         gitKVKeys.forEach { key ->
             LOGGER.info("Key found '$key'. Updating consul with key value")
-            gitService.get(key).let { value ->
+            getValue(key).let { value ->
+                LOGGER.info("$key: $value")
                 consulService.put(key, value)
             }
         }
@@ -39,4 +41,10 @@ class Scheduler(
     }
 
     private fun shouldCleanConsulKeys() = shouldCleanConsulKeys ?: false
+
+    private fun getValue(key: String): String {
+        val valueFromGit = gitService.get(key)
+        val properties = propertiesService.getProperties()
+        return StringSubstitutor(properties).replace(valueFromGit)
+    }
 }
