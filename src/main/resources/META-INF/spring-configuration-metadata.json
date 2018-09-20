@@ -19,6 +19,14 @@
     {
       "name": "consul.prepended.string",
       "type": "java.lang.String"
+    },
+    {
+      "name": "git.config.clone.path",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "git.values.clone.path",
+      "type": "java.lang.String"
     }
   ]
 }
