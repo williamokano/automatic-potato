@@ -31,19 +31,12 @@ class Scheduler(
         }
 
         if (shouldCleanConsulKeys()) {
-            consulService.getKeys().minus(gitKVKeys).forEach { key ->
-                LOGGER.warn("Key $key do not exist on git anymore. Deleting from consul!!!!")
+            val consulKeys = consulService.getKeys()
+            consulKeys.asSequence().minus(gitKVKeys).toList().forEach { key ->
                 consulService.remove(key)
             }
         }
     }
 
     private fun shouldCleanConsulKeys() = shouldCleanConsulKeys ?: false
-
-    @Scheduled(fixedDelay = 1000, initialDelay = 20000)
-    fun justMockingWeirdBehavior() {
-        val randomKey = UUID.randomUUID().toString()
-        LOGGER.warn("ADDING NONEXISTING KEY FROM GIT '$randomKey'")
-        consulService.put(randomKey, UUID.randomUUID().toString())
-    }
 }

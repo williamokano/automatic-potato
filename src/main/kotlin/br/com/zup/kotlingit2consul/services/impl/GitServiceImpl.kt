@@ -1,22 +1,28 @@
 package br.com.zup.kotlingit2consul.services.impl
 
 import br.com.zup.kotlingit2consul.services.GitService
-import org.springframework.stereotype.Service
 
-@Service
-class GitServiceImpl : GitService {
+class GitServiceImpl(
+    val keyPrefix: String
+) : GitService {
+
     private val mockKv = mapOf(
-        "config/application/data" to "realwave",
-        "config/rw-iam-app/data" to "I have no content"
+        "application/data" to "realwave",
+        "rw-iam-app/data" to "I have no content"
     )
 
     override fun getKeys(): Set<String> {
-        return mockKv.keys
+        return mockKv.keys.asSequence().map(this::buildKeys).toSet()
     }
 
-    override fun get(key: String): String {
-        return mockKv.getOrElse(key) {
-            throw RuntimeException("Key $key do not exist")
+    override fun get(key: String): String = key.removePrefix(keyPrefix).trim().let { normalizedKey ->
+        mockKv.getOrElse(normalizedKey) {
+            throw RuntimeException("Key $normalizedKey do not exist")
         }
     }
+
+    private fun buildKeys(key: String) =
+        listOf(keyPrefix.trim('/'), '/', key)
+            .joinToString("")
+            .trim('/')
 }

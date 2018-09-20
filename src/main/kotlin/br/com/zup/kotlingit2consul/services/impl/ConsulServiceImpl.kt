@@ -2,9 +2,7 @@ package br.com.zup.kotlingit2consul.services.impl
 
 import br.com.zup.kotlingit2consul.services.ConsulService
 import org.slf4j.LoggerFactory
-import org.springframework.stereotype.Service
 
-@Service
 class ConsulServiceImpl : ConsulService {
     private companion object {
         val LOGGER = LoggerFactory.getLogger(this::class.java)!!
