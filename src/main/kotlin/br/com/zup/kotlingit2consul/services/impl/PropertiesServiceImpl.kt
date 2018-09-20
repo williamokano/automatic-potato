@@ -6,7 +6,8 @@ class PropertiesServiceImpl : PropertiesService {
     private val mockProps = mapOf(
         "name" to "William",
         "lastname" to "Okano",
-        "test.with.dots" to "it worked"
+        "test.with.dots" to "it worked",
+        "replaced" to "Zoppppppeopeorpoer"
     )
 
     override fun getKeys(): Set<String> =

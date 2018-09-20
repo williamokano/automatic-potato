@@ -8,7 +8,8 @@ class GitServiceImpl(
 
     private val mockKv = mapOf(
         "application/data" to "realwave",
-        "rw-iam-app/data" to "I have no content to \${name} \${error}"
+        "rw-iam-app/data" to "I have no content to \${name} \${error}",
+        "rw-router/data" to "something that sould be \${replaced}"
     )
 
     override fun getKeys(): Set<String> {

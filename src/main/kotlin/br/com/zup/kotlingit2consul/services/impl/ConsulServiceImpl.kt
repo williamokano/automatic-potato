@@ -1,33 +1,36 @@
 package br.com.zup.kotlingit2consul.services.impl
 
 import br.com.zup.kotlingit2consul.services.ConsulService
+import com.orbitz.consul.Consul
 import org.slf4j.LoggerFactory
 
-class ConsulServiceImpl : ConsulService {
+class ConsulServiceImpl(
+    val consul: Consul
+) : ConsulService {
     private companion object {
         val LOGGER = LoggerFactory.getLogger(this::class.java)!!
     }
 
-    private val mutKV = mutableMapOf<String, String>()
+    private val kvClient by lazy { consul.keyValueClient() }
 
     override fun getKeys(): Set<String> {
-        return mutKV.keys
+        return kvClient.getKeys("/").toSet()
     }
 
     override fun get(key: String): String {
         LOGGER.debug("Trying to get key $key")
-        return mutKV.getOrElse(key) {
-            throw RuntimeException("Key $key not found")
+        return kvClient.getValueAsString(key).orElseThrow {
+            RuntimeException("Failed to get key $key")
         }
     }
 
     override fun put(key: String, value: String) {
         LOGGER.debug("Trying to put key $key with some value")
-        mutKV[key] = value
+        kvClient.putValue(key, value)
     }
 
     override fun remove(key: String) {
         LOGGER.warn("Removing key $key from consul.")
-        mutKV.remove(key)
+        kvClient.deleteKey(key)
     }
 }

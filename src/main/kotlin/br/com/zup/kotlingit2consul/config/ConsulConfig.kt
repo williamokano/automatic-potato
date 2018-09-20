@@ -9,6 +9,7 @@ import br.com.zup.kotlingit2consul.services.impl.PropertiesServiceImpl
 import com.google.common.net.HostAndPort
 import com.orbitz.consul.Consul
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
@@ -21,14 +22,15 @@ class ConsulConfig {
     private var port: Int? = null
 
     @Bean
+    @ConditionalOnMissingBean
     fun consulClient(): Consul =
         Consul.builder()
             .withHostAndPort(HostAndPort.fromParts(host, port!!))
             .build()
 
     @Bean
-    fun consulService(): ConsulService =
-        ConsulServiceImpl()
+    fun consulService(consul: Consul): ConsulService =
+        ConsulServiceImpl(consul)
 
     @Bean
     fun gitService(@Value("\${consul.prepended.string}") prependKey: String): GitService =
