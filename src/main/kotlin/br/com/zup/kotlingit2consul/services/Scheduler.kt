@@ -28,7 +28,6 @@ class Scheduler(
         gitKVKeys.forEach { key ->
             LOGGER.info("Key found '$key'. Updating consul with key value")
             getValue(key).let { value ->
-                LOGGER.info("$key: $value")
                 consulService.put(key, value)
             }
         }
