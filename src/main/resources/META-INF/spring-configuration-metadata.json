@@ -27,6 +27,14 @@
     {
       "name": "git.values.clone.path",
       "type": "java.lang.String"
+    },
+    {
+      "name": "git.config.url",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "git.config.path",
+      "type": "java.lang.String"
     }
   ]
 }

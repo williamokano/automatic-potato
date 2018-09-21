@@ -1,11 +1,13 @@
 package br.com.zup.kotlingit2consul.services.impl
 
 import br.com.zup.kotlingit2consul.services.GitService
+import br.com.zup.kotlingit2consul.utils.GitUtils
 
 class GitServiceImpl(
-    val keyPrefix: String
+    val keyPrefix: String,
+    val repositoryUrl: String,
+    val repositoryPath: String
 ) : GitService {
-
     private val mockKv = mapOf(
         "application/data" to "realwave",
         "rw-iam-app/data" to "I have no content to \${name} \${error}",
@@ -20,6 +22,10 @@ class GitServiceImpl(
         mockKv.getOrElse(normalizedKey) {
             throw RuntimeException("Key $normalizedKey do not exist")
         }
+    }
+
+    override fun updateRepository() {
+        GitUtils.pullOrClone(repositoryUrl, repositoryPath)
     }
 
     private fun buildKeys(key: String) =

@@ -33,8 +33,12 @@ class ConsulConfig {
         ConsulServiceImpl(consul)
 
     @Bean
-    fun gitService(@Value("\${consul.prepended.string}") prependKey: String): GitService =
-        GitServiceImpl(prependKey)
+    fun gitService(
+        @Value("\${consul.prepended.string}") prependKey: String,
+        @Value("\${git.config.url}") gitConfigUrl: String,
+        @Value("\${git.config.clone.path}") gitConfigPath: String
+    ): GitService =
+        GitServiceImpl(prependKey, gitConfigUrl, gitConfigPath)
 
     @Bean
     fun propertiesService(): PropertiesService =
