@@ -39,6 +39,7 @@ object GitUtils {
         Git(FileRepository("$repositoryPath/.git"))
             .pull()
             .call()
+        LOGGER.info("Pull finished")
     }
 
     private fun cloneRepository(repositoryUrl: String, repositoryPath: String) {
@@ -47,5 +48,6 @@ object GitUtils {
             .setURI(repositoryUrl)
             .setDirectory(Paths.get(repositoryPath).toFile())
             .call()
+        LOGGER.info("Clone finished")
     }
 }
