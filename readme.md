@@ -25,4 +25,4 @@ Why?
 
 ### How to override a property?
 Just like any java program, use the `--property=value` option. Example:  
-`java -jar automatic-potato.jar --consul.host=any.addr.fqdn --git.config.url=https://some.git.addr/repo.git`**``**
+`java -jar automatic-potato.jar --consul.host=any.addr.fqdn --git.config.url=https://some.git.addr/repo.git`  
