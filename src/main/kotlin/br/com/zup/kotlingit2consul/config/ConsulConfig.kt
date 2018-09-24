@@ -34,7 +34,7 @@ class ConsulConfig {
 
     @Bean
     fun gitService(
-        @Value("\${consul.prepended.string}") prependKey: String,
+        @Value("\${consul.prepended.to.key}") prependKey: String,
         @Value("\${git.config.url}") gitConfigUrl: String,
         @Value("\${git.config.clone.path}") gitConfigPath: String
     ): GitService =

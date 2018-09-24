@@ -17,7 +17,7 @@
       "type": "java.lang.Boolean"
     },
     {
-      "name": "consul.prepended.string",
+      "name": "consul.prepended.to.key",
       "type": "java.lang.String"
     },
     {
