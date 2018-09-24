@@ -8,7 +8,8 @@ import java.io.File
 class GitServiceImpl(
     val keyPrefix: String,
     val repositoryUrl: String,
-    val repositoryPath: String
+    val repositoryPath: String,
+    val repositoryBranch: String
 ) : GitService {
     private companion object {
         val LOGGER = LoggerFactory.getLogger(this::class.java)!!
@@ -27,6 +28,7 @@ class GitServiceImpl(
 
     override fun fetchOrUpdateRepository() {
         GitUtils.pullOrClone(repositoryUrl, repositoryPath)
+        GitUtils.checkout(repositoryPath, repositoryBranch)
     }
 
     private fun getFolderContents(path: String, prepend: String = ""): List<String> {

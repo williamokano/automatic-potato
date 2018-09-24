@@ -39,6 +39,14 @@
     {
       "name": "git.values.format.type",
       "type": "java.lang.String"
+    },
+    {
+      "name": "git.config.branch",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "git.values.branch",
+      "type": "java.lang.String"
     }
   ]
 }

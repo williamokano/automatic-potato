@@ -11,23 +11,16 @@ import java.nio.file.Paths
 
 class PropertiesServiceImpl(
     private val repositoryUrl: String,
-    private val repositoryPath: String
+    private val repositoryPath: String,
+    private val repositoryBranch: String
 ) : PropertiesService {
-    private val mockProps = mapOf(
-        "name" to "William",
-        "lastname" to "Okano",
-        "test.with.dots" to "it worked",
-        "replaced" to "Zoppppppeopeorpoer"
-    )
-
     private val objectMapper by lazy { ObjectMapper() }
 
     private companion object {
         val LOGGER = LoggerFactory.getLogger(this::class.java)!!
     }
 
-    override fun getKeys(): Set<String> =
-        mockProps.keys
+    override fun getKeys(): Set<String> = TODO("Not implemented")
 
     override fun get(key: String): Map<String, String> {
         val sanitizedKey = sanitizeKey(key)
@@ -46,11 +39,10 @@ class PropertiesServiceImpl(
         return properties
     }
 
-    override fun updateProperties() =
+    override fun updateProperties() {
         GitUtils.pullOrClone(repositoryUrl, repositoryPath)
-
-    override fun getProperties(): Map<String, String> =
-        mockProps
+        GitUtils.checkout(repositoryPath, repositoryBranch)
+    }
 
     private fun sanitizeKey(key: String) =
         key.removePrefix("config").removeSuffix("data").trim('/')
