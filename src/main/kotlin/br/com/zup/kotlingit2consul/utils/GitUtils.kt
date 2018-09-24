@@ -24,12 +24,28 @@ object GitUtils {
         }
     }
 
+    fun checkout(repositoryPath: String, branch: String) {
+        LOGGER.info("Checking out branch $branch")
+        val git = getRepository(repositoryPath)
+        git.branchCreate()
+            .setForce(true)
+            .setName(branch)
+            .setStartPoint("origin/$branch")
+            .call()
+        git.checkout().setName(branch).call()
+    }
+
+    private fun getGitPath(path: String) = "$path/.git"
+
+    private fun getRepository(path: String) =
+        Git(FileRepository(getGitPath(path)))
+
     private fun pullRepository(repositoryUrl: String, repositoryPath: String) {
         if (Files.notExists(Paths.get(repositoryPath))) {
             throw RuntimeException("Path $repositoryPath is not a git repository")
         }
 
-        if (Files.notExists(Paths.get("$repositoryPath/.git"))) {
+        if (Files.notExists(Paths.get(getGitPath(repositoryPath)))) {
             LOGGER.error("Path is not a git repository. Deleting...")
             FileSystemUtils.deleteRecursively(Paths.get(repositoryPath))
             throw RuntimeException("Path $repositoryPath is not a git repository")
