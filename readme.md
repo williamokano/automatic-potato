@@ -4,11 +4,14 @@ A simple git2consul with replacement tool
 Very early alpha stage
 
 ## How to run
-make install && make run. Not using make?  
-`docker-compose up -d` and then `mvn spring-boot:run`. Not using docker and maven?  
+First, you will need docker and docker-compose.  
+In order to run, just execute `make install && make run`. Not using make?  
+Ok, then run the ol' style `docker-compose up -d` and then `mvn spring-boot:run`. Not using docker and maven?  
+
+Why?  
 
 ## Properties
-| name                     | desc.                                                               | type    | default                                              |
+| Name                     | Description                                                         | Type    | Default                                              |
 |--------------------------|---------------------------------------------------------------------|---------|------------------------------------------------------|
 | consul.host              | Consul host                                                         | String  | 127.0.0.1                                            |
 | consul.port              | Consul port                                                         | Integer | 8500                                                 |
@@ -22,4 +25,4 @@ make install && make run. Not using make?
 
 ### How to override a property?
 Just like any java program, use the `--property=value` option. Example:  
-`java -jar automatic-potato.jar --consul.host=any.addr.fqdn --git.config.url=https://some.git.addr/repo.git`
+`java -jar automatic-potato.jar --consul.host=any.addr.fqdn --git.config.url=https://some.git.addr/repo.git`**``**
