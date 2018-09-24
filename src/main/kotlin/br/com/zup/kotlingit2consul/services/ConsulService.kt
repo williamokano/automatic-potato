@@ -3,4 +3,4 @@ package br.com.zup.kotlingit2consul.services
 import org.springframework.stereotype.Service
 
 @Service
-interface ConsulService : ReadableKeyValueStore, WritableKeyValueStore
+interface ConsulService : ReadableKeyValueStore<String>, WritableKeyValueStore

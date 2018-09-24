@@ -22,7 +22,8 @@ class Scheduler(
     @Scheduled(fixedDelayString = "\${poll.interval.ms}")
     fun updateConsulProperties() {
         LOGGER.info("Running updateConsulProperties. Getting keys")
-        gitService.updateRepository()
+        gitService.fetchOrUpdateRepository()
+        propertiesService.updateProperties()
         val gitKVKeys = gitService.getKeys()
 
         gitKVKeys.forEach { key ->
@@ -44,7 +45,7 @@ class Scheduler(
 
     private fun getValue(key: String): String {
         val valueFromGit = gitService.get(key)
-        val properties = propertiesService.getProperties()
+        val properties = propertiesService.get(key)
         return StringSubstitutor(properties).replace(valueFromGit)
     }
 }

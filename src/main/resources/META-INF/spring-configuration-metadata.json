@@ -33,7 +33,11 @@
       "type": "java.lang.String"
     },
     {
-      "name": "git.config.path",
+      "name": "git.values.url",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "git.values.format.type",
       "type": "java.lang.String"
     }
   ]

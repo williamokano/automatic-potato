@@ -10,12 +10,6 @@ class GitServiceImpl(
     val repositoryUrl: String,
     val repositoryPath: String
 ) : GitService {
-    private val mockKv = mapOf(
-        "application/data" to "realwave",
-        "rw-iam-app/data" to "I have no content to \${name} \${error}",
-        "rw-router/data" to "something that sould be \${replaced}"
-    )
-
     private companion object {
         val LOGGER = LoggerFactory.getLogger(this::class.java)!!
     }
@@ -31,7 +25,7 @@ class GitServiceImpl(
         File(filePath).readText()
     }
 
-    override fun updateRepository() {
+    override fun fetchOrUpdateRepository() {
         GitUtils.pullOrClone(repositoryUrl, repositoryPath)
     }
 

@@ -41,6 +41,9 @@ class ConsulConfig {
         GitServiceImpl(prependKey, gitConfigUrl, gitConfigPath)
 
     @Bean
-    fun propertiesService(): PropertiesService =
-        PropertiesServiceImpl()
+    fun propertiesService(
+        @Value("\${git.values.url}") repositoryUrl: String,
+        @Value("\${git.values.clone.path}") repositoryPath: String
+    ): PropertiesService =
+        PropertiesServiceImpl(repositoryUrl, repositoryPath)
 }
