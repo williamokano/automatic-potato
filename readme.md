@@ -10,6 +10,12 @@ Ok, then run the ol' style `docker-compose up -d` and then `mvn spring-boot:run`
 
 Why?  
 
+## Build docker image
+After `./mvnw clean install`, `docker build -t kogitsul .`. Don't forget the period.  
+To execute, `docker run kogitsul`. You can pass the same parameters as running plain ol' `java -jar` style.  
+**Example**:  
+`docker run kogitsul --consul.host=somehiddenaddr --consul.port=9999 --git.config.url=https://someaddr.fqdn/config.git`  
+
 ## Properties
 | Name                       | Description                                                         | Type    | Default value                                        |
 |----------------------------|---------------------------------------------------------------------|---------|------------------------------------------------------|
