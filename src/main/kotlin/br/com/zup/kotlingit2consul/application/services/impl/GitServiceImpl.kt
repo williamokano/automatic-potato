@@ -1,7 +1,7 @@
-package br.com.zup.kotlingit2consul.services.impl
+package br.com.zup.kotlingit2consul.application.services.impl
 
-import br.com.zup.kotlingit2consul.services.GitService
-import br.com.zup.kotlingit2consul.utils.GitUtils
+import br.com.zup.kotlingit2consul.application.services.GitService
+import br.com.zup.kotlingit2consul.application.utils.GitUtils
 import org.slf4j.LoggerFactory
 import java.io.File
 

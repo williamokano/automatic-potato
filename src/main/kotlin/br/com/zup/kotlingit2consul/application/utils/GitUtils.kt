@@ -1,4 +1,4 @@
-package br.com.zup.kotlingit2consul.utils
+package br.com.zup.kotlingit2consul.application.utils
 
 import org.eclipse.jgit.api.Git
 import org.eclipse.jgit.internal.storage.file.FileRepository

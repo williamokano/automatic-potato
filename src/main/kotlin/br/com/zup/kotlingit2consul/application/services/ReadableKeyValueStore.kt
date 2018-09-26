@@ -1,4 +1,4 @@
-package br.com.zup.kotlingit2consul.services
+package br.com.zup.kotlingit2consul.application.services
 
 interface ReadableKeyValueStore<out T> {
     fun getKeys(): Set<String>

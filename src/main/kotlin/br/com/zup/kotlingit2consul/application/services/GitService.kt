@@ -1,4 +1,4 @@
-package br.com.zup.kotlingit2consul.services
+package br.com.zup.kotlingit2consul.application.services
 
 import org.springframework.stereotype.Service
 

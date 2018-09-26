@@ -1,6 +1,6 @@
-package br.com.zup.kotlingit2consul.services.impl
+package br.com.zup.kotlingit2consul.application.services.impl
 
-import br.com.zup.kotlingit2consul.services.ConsulService
+import br.com.zup.kotlingit2consul.application.services.ConsulService
 import com.orbitz.consul.Consul
 import org.slf4j.LoggerFactory
 

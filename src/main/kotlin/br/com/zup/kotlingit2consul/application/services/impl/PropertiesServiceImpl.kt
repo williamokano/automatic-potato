@@ -1,7 +1,7 @@
-package br.com.zup.kotlingit2consul.services.impl
+package br.com.zup.kotlingit2consul.application.services.impl
 
-import br.com.zup.kotlingit2consul.services.PropertiesService
-import br.com.zup.kotlingit2consul.utils.GitUtils
+import br.com.zup.kotlingit2consul.application.services.PropertiesService
+import br.com.zup.kotlingit2consul.application.utils.GitUtils
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.slf4j.LoggerFactory
